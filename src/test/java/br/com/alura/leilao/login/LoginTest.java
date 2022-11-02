@@ -1,4 +1,4 @@
-package br.com.alura.leilao;
+package br.com.alura.leilao.login;
 
 import br.com.alura.leilao.login.LoginPage;
 import org.junit.Assert;
