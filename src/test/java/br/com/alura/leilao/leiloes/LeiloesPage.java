@@ -1,32 +1,26 @@
 package br.com.alura.leilao.leiloes;
 
+import br.com.alura.leilao.PageInterface;
+import br.com.alura.leilao.PageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LeiloesPage {
+public class LeiloesPage extends PageObject implements PageInterface {
     public static final String URL_LEILOES = "http://localhost:8080/leiloes";
-    private final WebDriver browser;
 
     public LeiloesPage(WebDriver browser) {
-        this.browser = browser;
+        super(browser);
     }
 
-    public void fechar() {
-        this.browser.quit();
-    }
 
     public CadastroLeilaoPage carregarFormulario() {
-        this.browser.findElement(By.id("novo_leilao_link")).click();
-        return new CadastroLeilaoPage(browser);
-    }
-
-    public boolean contemTexto(String texto) {
-        return browser.getPageSource().contains(texto);
+        getBrowser().findElement(By.id("novo_leilao_link")).click();
+        return new CadastroLeilaoPage(getBrowser());
     }
 
     public boolean isLeilaoCadastrado(String nome, String valor, String data) {
-        WebElement linhaDaTabela = browser.findElement(By.cssSelector("#tabela-leiloes tbody tr:last-child"));
+        WebElement linhaDaTabela = getBrowser().findElement(By.cssSelector("#tabela-leiloes tbody tr:last-child"));
         WebElement colunaNome = linhaDaTabela.findElement(By.cssSelector("td:nth-child(1)"));
         WebElement colunaData = linhaDaTabela.findElement(By.cssSelector("td:nth-child(2)"));
         WebElement colunaValor = linhaDaTabela.findElement(By.cssSelector("td:nth-child(3)"));

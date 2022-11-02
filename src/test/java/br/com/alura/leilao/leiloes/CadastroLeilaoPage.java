@@ -1,34 +1,24 @@
 package br.com.alura.leilao.leiloes;
 
+import br.com.alura.leilao.PageInterface;
+import br.com.alura.leilao.PageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CadastroLeilaoPage {
+public class CadastroLeilaoPage extends PageObject implements PageInterface {
     private static final String URL_CADASTRO_LEILAO = "http://localhost:8080/leiloes/new";
-    private final WebDriver browser;
 
     public CadastroLeilaoPage(WebDriver browser) {
-        this.browser = browser;
+        super(browser);
     }
 
-    public void fechar() {
-        this.browser.quit();
-    }
-
-    public boolean contemTexto(String texto) {
-        return browser.getPageSource().contains(texto);
-    }
 
     public LeiloesPage cadastrarLeilao(String nome, String valor, String data) {
-        browser.findElement(By.id("nome")).sendKeys(nome);
-        browser.findElement(By.id("valorInicial")).sendKeys(valor);
-        browser.findElement(By.id("dataAbertura")).sendKeys(data);
-        browser.findElement(By.id("button-submit")).submit();
-        return new LeiloesPage(browser);
-    }
-
-    public Boolean isPagina(String pagina) {
-        return browser.getCurrentUrl().equals(pagina);
+        getBrowser().findElement(By.id("nome")).sendKeys(nome);
+        getBrowser().findElement(By.id("valorInicial")).sendKeys(valor);
+        getBrowser().findElement(By.id("dataAbertura")).sendKeys(data);
+        getBrowser().findElement(By.id("button-submit")).submit();
+        return new LeiloesPage(getBrowser());
     }
 
     public boolean isMensagensDeValidacaoVisiveis() {
