@@ -6,9 +6,8 @@ public interface PageInterface {
 
     WebDriver getBrowser();
 
-    default void fechar(){
-        getBrowser().quit();
-    }
+    void fechar();
+
     default boolean contemTexto(String texto) {
         return getBrowser().getPageSource().contains(texto);
     }

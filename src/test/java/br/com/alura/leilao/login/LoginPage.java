@@ -28,6 +28,11 @@ public final class LoginPage implements PageInterface {
         return browser;
     }
 
+    @Override
+    public void fechar() {
+        PageObject.fechar();
+    }
+
     public void preenhcerLogin(String username, String password) {
         getBrowser().findElement(By.id("username")).sendKeys(username);
         getBrowser().findElement(By.id("password")).sendKeys(password);

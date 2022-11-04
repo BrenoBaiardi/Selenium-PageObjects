@@ -11,11 +11,21 @@ public final class PageObject {
         throw new IllegalStateException("utility class");
     }
 
-    public static WebDriver getBrowser(){
+    public static WebDriver getBrowser() {
         if (browser == null) {
             System.setProperty("webdriver.chrome.driver", "/drivers/chromedriver.exe");
             browser = new ChromeDriver();
         }
         return browser;
     }
+
+    public static void fechar() {
+        if (browser == null) {
+            return;
+        }
+        browser.quit();
+        browser = null;
+    }
+
+
 }

@@ -24,6 +24,11 @@ public final class LeiloesPage implements PageInterface {
         return browser;
     }
 
+    @Override
+    public void fechar() {
+        PageObject.fechar();
+    }
+
     public CadastroLeilaoPage carregarFormulario() {
         getBrowser().findElement(By.id("novo_leilao_link")).click();
         return new CadastroLeilaoPage(getBrowser());

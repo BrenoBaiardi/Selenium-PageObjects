@@ -23,6 +23,11 @@ public final class CadastroLeilaoPage implements PageInterface {
         return browser;
     }
 
+    @Override
+    public void fechar() {
+        PageObject.fechar();
+    }
+
     public LeiloesPage cadastrarLeilao(String nome, String valor, String data) {
         getBrowser().findElement(By.id("nome")).sendKeys(nome);
         getBrowser().findElement(By.id("valorInicial")).sendKeys(valor);
