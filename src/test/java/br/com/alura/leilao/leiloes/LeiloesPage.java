@@ -6,13 +6,23 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LeiloesPage extends PageObject implements PageInterface {
+public final class LeiloesPage implements PageInterface {
     public static final String URL_LEILOES = "http://localhost:8080/leiloes";
 
+    private final WebDriver browser;
+
     public LeiloesPage(WebDriver browser) {
-        super(browser);
+        this.browser = browser;
     }
 
+    public LeiloesPage() {
+        this(PageObject.getBrowser());
+    }
+
+    @Override
+    public WebDriver getBrowser() {
+        return browser;
+    }
 
     public CadastroLeilaoPage carregarFormulario() {
         getBrowser().findElement(By.id("novo_leilao_link")).click();

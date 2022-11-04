@@ -3,21 +3,19 @@ package br.com.alura.leilao;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public abstract class PageObject {
+public final class PageObject {
 
-    private WebDriver browser;
+    private static WebDriver browser;
 
-    public WebDriver getBrowser(){
+    private PageObject() {
+        throw new IllegalStateException("utility class");
+    }
+
+    public static WebDriver getBrowser(){
+        if (browser == null) {
+            System.setProperty("webdriver.chrome.driver", "/drivers/chromedriver.exe");
+            browser = new ChromeDriver();
+        }
         return browser;
     }
-
-    public PageObject(WebDriver browser) {
-        System.setProperty("webdriver.chrome.driver", "/drivers/chromedriver.exe");
-        if (browser == null) {
-            this.browser = new ChromeDriver();
-        } else {
-            this.browser = browser;
-        }
-    }
-
 }
