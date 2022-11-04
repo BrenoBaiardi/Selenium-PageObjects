@@ -8,13 +8,24 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class LoginPage extends PageObject implements PageInterface{
+public final class LoginPage implements PageInterface {
     public static final String URL_LOGIN = "http://localhost:8080/login";
     private static final String URL_LEILOES = "http://localhost:8080/leiloes";
 
-    public LoginPage() {
-        super(null);
+    private final WebDriver browser;
+
+    public LoginPage(WebDriver browser) {
+        this.browser = browser;
         this.getBrowser().navigate().to(URL_LOGIN);
+    }
+
+    public LoginPage() {
+        this(PageObject.getBrowser());
+    }
+
+    @Override
+    public WebDriver getBrowser() {
+        return browser;
     }
 
     public void preenhcerLogin(String username, String password) {
